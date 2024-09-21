@@ -14,6 +14,14 @@ async function getBalance(address) {
     console.log("Balance: ", ethers.formatEther(balance), "ETH");
 }
 
+async function getGasPrice() {
+    const provider = ethers.getDefaultProvider('sepolia');
+    const feeData = await provider.getFeeData();
+    console.log("Current Gas Price: ", ethers.formatEther(feeData.gasPrice, 'gwei'), "Gwei");
+}
+
 const wallet = createWallet(); 
 
 getBalance(wallet.address);
+
+getGasPrice();
